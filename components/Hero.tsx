@@ -40,12 +40,12 @@ Outside of tech, I love watching football and I’m a dedicated Tottenham Hotspu
               <span className="sr-only">Email</span>
             </Button>
           </a>
-            <a href="/public/Mohammed-1.pdf" target="_blank" rel="noopener noreferrer">
-            <Button className="gap-2 transition-transform hover:scale-105">
-              <DownloadIcon className="h-4 w-4" />
-              Resume
-            </Button>
-            </a>
+              <a href="/Mohammed-1.pdf" target="_blank" rel="noopener noreferrer">
+              <Button className="gap-2 transition-transform hover:scale-105">
+                <DownloadIcon className="h-4 w-4" />
+                Resume
+              </Button>
+              </a>
         </div>
       </div>
     </section>
