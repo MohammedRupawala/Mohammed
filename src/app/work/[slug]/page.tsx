@@ -23,9 +23,11 @@ import { Projects } from "@/components/projects/Projects";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "work", "projects"]);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts
+    .filter((post) => post.slug) // Ensure slug exists
+    .map((post) => ({
+      slug: Array.isArray(post.slug) ? post.slug.join("/") : post.slug,
+    }));
 }
 
 export async function generateMetadata({
