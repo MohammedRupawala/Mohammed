@@ -12,9 +12,10 @@ import {
   Line,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, routes } from "@/resources";
-import { Mailchimp } from "@/components";
-import { Projects } from "@/components/work/Projects";
+// import { Mailchimp } from "@/components";
+import { Projects } from "@/components/projects/Projects";
 import { Posts } from "@/components/blog/Posts";
+import { competitiveProgramming } from "@/resources";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -28,7 +29,7 @@ export async function generateMetadata() {
 
 export default function Home() {
   return (
-    <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
+    <Column maxWidth="m" gap="l" paddingY="8" horizontal="center">
       <Schema
         as="webPage"
         baseURL={baseURL}
@@ -42,15 +43,15 @@ export default function Home() {
           image: `${baseURL}${person.avatar}`,
         }}
       />
-      <Column fillWidth horizontal="center" gap="m">
-        <Column maxWidth="s" horizontal="center" align="center">
-          {home.featured.display && (
+      <Column fillWidth horizontal="center" gap="s">
+        <Column maxWidth="s" horizontal="center" align="center" gap="s">
+          {/* {home.featured.display && (
             <RevealFx
               fillWidth
               horizontal="center"
-              paddingTop="16"
-              paddingBottom="32"
-              paddingLeft="12"
+              paddingTop="8"
+              paddingBottom="20"
+              paddingLeft="8"
             >
               <Badge
                 background="brand-alpha-weak"
@@ -64,18 +65,18 @@ export default function Home() {
                 <Row paddingY="2">{home.featured.title}</Row>
               </Badge>
             </RevealFx>
-          )}
-          <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="16">
+          )} */}
+          <RevealFx translateY="4" fillWidth horizontal="center" paddingBottom="8">
             <Heading wrap="balance" variant="display-strong-l">
               {home.headline}
             </Heading>
           </RevealFx>
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
+          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="16">
             <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
               {home.subline}
             </Text>
           </RevealFx>
-          <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
+          <RevealFx paddingTop="8" delay={0.4} horizontal="center" paddingLeft="8">
             <Button
               id="about"
               data-border="rounded"
@@ -100,31 +101,60 @@ export default function Home() {
           </RevealFx>
         </Column>
       </Column>
-      <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
+      {/* Competitive Programming Section */}
+      <RevealFx translateY="8" delay={0.5}>
+        <Column fillWidth horizontal="center" align="center" gap="xs" marginBottom="l">
+          <Heading as="h2" variant="display-strong-m" style={{ textAlign: "center" }}>
+            {competitiveProgramming.title}
+          </Heading>
+          <Row gap="8" horizontal="center">
+            {competitiveProgramming.platforms.map((platform) => (
+              <Button
+                key={platform.name}
+                href={platform.url}
+                prefixIcon={platform.icon}
+                variant="secondary"
+                size="m"
+                weight="default"
+                target="_blank"
+              >
+                {platform.name}
+              </Button>
+            ))}
+          </Row>
+        </Column>
+      </RevealFx>
+      <RevealFx translateY="16" delay={0.5}>
+        <Column fillWidth horizontal="center" align="center">
+          <Heading as="h2" variant="display-strong-m" style={{ textAlign: "center" }}>
+        Projects
+          </Heading>
+        </Column>
+      </RevealFx>
+      <RevealFx translateY="8" delay={0.6}>
+        <Projects />
       </RevealFx>
       {routes["/blog"] && (
-        <Column fillWidth gap="24" marginBottom="l">
-          <Row fillWidth paddingRight="64">
-            <Line maxWidth={48} />
+        <Column fillWidth gap="12" marginBottom="m">
+          <Row fillWidth paddingRight="32">
+            <Line maxWidth={32} />
           </Row>
-          <Row fillWidth gap="24" marginTop="40" s={{ direction: "column" }}>
-            <Row flex={1} paddingLeft="l" paddingTop="24">
+          <Row fillWidth gap="12" marginTop="20" s={{ direction: "column" }}>
+            <Row flex={1} paddingLeft="s" paddingTop="12">
               <Heading as="h2" variant="display-strong-xs" wrap="balance">
                 Latest from the blog
               </Heading>
             </Row>
-            <Row flex={3} paddingX="20">
+            <Row flex={3} paddingX="s">
               <Posts range={[1, 2]} columns="2" />
             </Row>
           </Row>
-          <Row fillWidth paddingLeft="64" horizontal="end">
-            <Line maxWidth={48} />
+          <Row fillWidth paddingLeft="32" horizontal="end">
+            <Line maxWidth={32} />
           </Row>
         </Column>
       )}
-      <Projects range={[2]} />
-      <Mailchimp />
+      {/* <Mailchimp /> */}
     </Column>
   );
 }

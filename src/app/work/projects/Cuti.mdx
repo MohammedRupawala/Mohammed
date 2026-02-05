@@ -1,0 +1,29 @@
+---
+title: "Cuti: High Performance In-Memory Database in Go"
+summary: "Cuti is a high-performance Redis clone written in Go, featuring an event-driven TCP server, custom RESP protocol implementation, probabilistic key expiration, and crash-safe persistence."
+publishedAt: "2026-02-05"
+images:
+github: "https://github.com/MohammedRupawala/cuti"
+---
+
+Cuti is a high performance Redis clone written in Go. It is a single-threaded, event-driven TCP server inspired by Redis’ core architecture. Cuti leverages low-level syscalls and epoll to handle over 10,000 concurrent connections with non-blocking I/O and O(1) event dispatch, faithfully mirroring Redis’ event loop and design principles.
+
+## Key Features
+
+- **Event-Driven Architecture:**
+  Built using low-level syscall and epoll, Cuti efficiently manages 10k+ concurrent connections with a single thread, just like Redis.
+
+- **RESP Protocol Implementation:**
+  Implements the Redis Serialization Protocol (RESP) from scratch, supporting Arrays, Bulk Strings, and Integers. This enables command pipelining and boosts request throughput by 3–4×.
+
+- **Probabilistic Key Expiration:**
+  Features a probabilistic key-expiration algorithm inspired by Redis' active expiry cycle and the Central Limit Theorem (CLT), ensuring efficient and predictable memory management.
+
+- **Crash-Safe Persistence:**
+  Implements Append-Only File (AOF) persistence with atomic background rewrites, simulating Copy-on-Write semantics for crash-safe recovery and high availability.
+
+## Takeaways
+
+Cuti demonstrates how Go can be used for systems-level programming, combining low-level performance with modern language ergonomics. The project highlights advanced concepts such as event-driven I/O, protocol design, probabilistic algorithms, and robust persistence strategies—all in the context of building a Redis clone.
+
+---

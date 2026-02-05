@@ -1,0 +1,46 @@
+---
+title: "MindSync — AI-Powered Journaling Platform"
+publishedAt: "2025-04-08"
+summary: "An AI-powered journaling application that enables semantic search and natural language interaction over personal journal entries."
+images:
+github: "https://github.com/MohammedRupawala/MindSync"
+
+team:
+  - name: "Vedant Panchal"
+    role: "Frontend Engineer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/vedant-panchal24/"
+  - name: "Mohammed Rupawala"
+    role: "Backend Engineer"
+    avatar: "/images/image.png"
+    linkedIn: "https://www.linkedin.com/in/mohammed-rupawala11/"
+---
+
+## Overview
+
+MindSync is an AI-powered journaling application where users can write daily journals and later interact with their entries using natural language. The system goes beyond traditional keyword search by using embeddings and sentiment analysis to provide context-aware and accurate responses.
+
+## Key Features
+
+- **AI-Powered Journaling**: Users can create daily journal entries that are processed and enriched with embeddings and sentiment metadata.
+- **Vector-Based Semantic Search**: Journal entries are converted into vector embeddings and stored in a vector database, enabling semantic search instead of keyword matching.
+- **Sentiment Analysis**: Integrated Hugging Face models to analyze emotional tone and sentiment trends across journal entries.
+- **Natural Language Chat Interface**: Users can ask questions in natural language; the system parses intent, extracts relevant parameters, performs semantic search, and generates accurate responses.
+- **Low-Latency Querying**: Redis is used to cache frequently accessed data and recent conversations for faster response times.
+
+## Technologies Used
+
+- **React**: For building a responsive and intuitive frontend experience.
+- **FastAPI**: For high-performance backend APIs and AI workflow orchestration.
+- **Supabase**: Used for authentication and persistent data storage.
+- **Redis**: For caching, session management, and performance optimization.
+- **Hugging Face Models**: For sentiment analysis and text embeddings.
+- **Vector Database**: For storing embeddings and enabling similarity-based retrieval.
+
+## Challenges and Learnings
+
+A major challenge was designing a pipeline that could efficiently process journal entries into embeddings while keeping query latency low. Another key learning was building a reliable intent-parsing layer to extract meaningful parameters from user queries before performing semantic search. This significantly improved response accuracy and relevance.
+
+## Outcome
+
+MindSync demonstrates how AI and vector search can transform personal journaling into an intelligent, queryable knowledge system. The platform enables users to reflect on past thoughts, track emotional patterns, and retrieve insights from their journals through natural language interaction.

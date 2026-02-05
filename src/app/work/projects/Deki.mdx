@@ -1,0 +1,38 @@
+---
+title: "Deki — Lightweight Unix-Like Shell"
+publishedAt: "2026-01-24"
+summary: "A lightweight custom shell supporting built-in commands, external program execution, and Trie-based command autocompletion."
+images:
+github: "https://github.com/MohammedRupawala/cuti"
+
+team:
+  - name: "Mohammed Rupawala"
+    role: "Systems Engineer"
+    avatar: "/images/image.png"
+    linkedIn: "https://www.linkedin.com/in/mohammed-rupawala11/"
+---
+
+## Overview
+
+Deki is a lightweight, Unix-like shell built from scratch to understand how command execution, process management, and interactive systems work at a low level. The project focuses on correctness, simplicity, and performance while supporting both built-in and external commands.
+
+## Key Features
+
+- **Built-in Commands**: Implements core shell commands such as `cd`, `type`, `echo`, and `exit` directly within the shell.
+- **External Command Execution**: Supports running external programs like `git`, `npm`, and other system binaries.
+- **Trie-Based Autocomplete**: Implements command autocompletion using a Trie data structure for fast prefix-based lookups.
+- **Interactive REPL**: Provides a responsive command-line interface with input parsing and error handling.
+
+## Technologies Used
+
+- **Go**: Used to build the shell with a focus on performance, concurrency, and low-level system interaction.
+- **OS Syscalls**: Leveraged process spawning and execution primitives for running external commands.
+- **Trie Data Structure**: Used to efficiently implement autocomplete functionality.
+
+## Challenges and Learnings
+
+One of the main challenges was correctly handling process execution and environment variables while maintaining a smooth interactive experience. Implementing autocomplete using a Trie reinforced the importance of choosing the right data structures for performance-critical paths.
+
+## Outcome
+
+Deki strengthened my understanding of operating system fundamentals, process management, and command execution. The project serves as a practical demonstration of building core system software from the ground up with clean abstractions and efficient data structures.

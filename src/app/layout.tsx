@@ -13,18 +13,18 @@ import {
   RevealFx,
   SpacingToken,
 } from "@once-ui-system/core";
-import { Footer, Header, RouteGuard, Providers } from "@/components";
-import { baseURL, effects, fonts, style, dataStyle, home } from "@/resources";
+import { Header, RouteGuard, Providers } from "@/components";
+import { baseURL, effects, fonts, style, dataStyle } from "@/resources";
 
-export async function generateMetadata() {
-  return Meta.generate({
-    title: home.title,
-    description: home.description,
-    baseURL: baseURL,
-    path: home.path,
-    image: home.image,
-  });
-}
+// export async function generateMetadata() {
+//   return Meta.generate({
+//     title: home.title,
+//     description: home.description,
+//     baseURL: baseURL,
+//     path: home.path,
+//     image: home.image,
+//   });
+// }
 
 export default async function RootLayout({
   children,
@@ -45,6 +45,7 @@ export default async function RootLayout({
       )}
     >
       <head>
+        {/* <link rel="icon" type="image/png" href="/coys.png" /> */}
         <script
           id="theme-init"
           dangerouslySetInnerHTML={{
@@ -162,7 +163,7 @@ export default async function RootLayout({
               <RouteGuard>{children}</RouteGuard>
             </Flex>
           </Flex>
-          <Footer />
+          {/* <Footer /> */}
         </Column>
       </Providers>
     </Flex>

@@ -6,7 +6,6 @@ interface ProjectsProps {
   range?: [number, number?];
   exclude?: string[];
 }
-
 export function Projects({ range, exclude }: ProjectsProps) {
   let allProjects = getPosts(["src", "app", "work", "projects"]);
 
@@ -24,7 +23,7 @@ export function Projects({ range, exclude }: ProjectsProps) {
     : sortedProjects;
 
   return (
-    <Column fillWidth gap="xl" marginBottom="40" paddingX="l">
+    <Column fillWidth gap="s" marginBottom="40" paddingX="1">
       {displayedProjects.map((post, index) => (
         <ProjectCard
           priority={index < 2}
@@ -36,6 +35,7 @@ export function Projects({ range, exclude }: ProjectsProps) {
           content={post.content}
           avatars={post.metadata.team?.map((member) => ({ src: member.avatar })) || []}
           link={post.metadata.link || ""}
+          github={post.metadata.github || ""}
         />
       ))}
     </Column>

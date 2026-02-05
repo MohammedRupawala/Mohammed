@@ -23,6 +23,13 @@ const socialPlatforms: Record<string, SocialPlatform> = {
     generateUrl: (title, url) => 
       `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
   },
+  resume:{
+    name: "resume",
+    icon: "document",
+    label: "Resume",
+    generateUrl: (title, url) => 
+      `/MohammedRupawala.pdf`,
+  },
   linkedin: {
     name: "linkedin",
     icon: "linkedin",

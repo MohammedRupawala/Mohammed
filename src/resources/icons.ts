@@ -27,11 +27,26 @@ import {
   SiNextdotjs,
   SiFigma,
   SiSupabase,
+  SiCplusplus,
+  SiPython,
+  SiHtml5,
+  SiCss3,
+  SiGo,
+  SiMysql,
+  SiGit,
+  SiDocker,
+  SiReact,
+  SiNodedotjs,
+  SiLeetcode,
 } from "react-icons/si";
+
+import { GiLaurelsTrophy } from "react-icons/gi"; // Fallback for Codeforces
 
 import { FaDiscord, FaGithub, FaLinkedin, FaX, FaThreads, FaInstagram, FaXTwitter, FaFacebook, FaPinterest, FaWhatsapp, FaReddit, FaTelegram, } from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
+    leetcode: SiLeetcode,
+    codeforces: GiLaurelsTrophy,
   arrowUpRight: HiArrowUpRight,
   arrowRight: HiArrowRight,
   email: HiEnvelope,
@@ -64,6 +79,15 @@ export const iconLibrary: Record<string, IconType> = {
   reddit: FaReddit,
   telegram: FaTelegram,
   instagram: FaInstagram,
+  cpp: SiCplusplus,
+  python: SiPython,
+  htmlcss: SiHtml5,
+  go: SiGo,
+  sql: SiMysql,
+  git: SiGit,
+  docker: SiDocker, // Replace with FaDocker if available
+  react: SiReact, // Replace with SiReact if available
+  nodejs: SiNodedotjs, // Replace with SiNodeDotJs if available
 };
 
 export type IconLibrary = typeof iconLibrary;

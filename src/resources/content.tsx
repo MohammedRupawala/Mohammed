@@ -2,14 +2,14 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Selene",
-  lastName: "Yu",
-  name: `Selene Yu`,
-  role: "Design Engineer",
-  avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  firstName: "Mohammed",
+  lastName: "Rupawala",
+  name: `Mohammed Rupawala`,
+  role: "Software Engineer",
+  avatar: "/images/image.png",
+  email: "mohammedrupawala.in@gmail.com",
+  location: "Asia/Kolkata", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: [], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter: Newsletter = {
@@ -25,25 +25,25 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system",
+    link: "https://github.com/MohammedRupawala",
     essential: true,
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/mohammed-rupawala11",
     essential: true,
   },
+  // {
+  //   name: "Instagram",
+  //   icon: "instagram",
+  //   link: "https://www.instagram.com/once_ui/",
+  //   essential: false,
+  // },
   {
-    name: "Instagram",
-    icon: "instagram",
-    link: "https://www.instagram.com/once_ui/",
-    essential: false,
-  },
-  {
-    name: "Threads",
-    icon: "threads",
-    link: "https://www.threads.com/@once_ui",
+    name: "Twitter",
+    icon: "twitter",
+    link: "https://twitter.com/MohammedRupawala",
     essential: true,
   },
   {
@@ -52,35 +52,46 @@ const social: Social = [
     link: `mailto:${person.email}`,
     essential: true,
   },
+  {
+    name:"resume",
+    icon:"document",
+    link:"/MohammedRupawala.pdf",
+    essential:true,
+  }
 ];
 
 const home: Home = {
   path: "/",
-  image: "/images/og/home.jpg",
+  image: "/images/image.jpg",
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
-  featured: {
-    display: true,
-    title: (
-      <Row gap="12" vertical="center">
-        <strong className="ml-4">Once UI</strong>{" "}
-        <Line background="brand-alpha-strong" vert height="20" />
-        <Text marginRight="4" onBackground="brand-medium">
-          Featured work
-        </Text>
-      </Row>
-    ),
-    href: "/work/building-once-ui-a-customizable-design-system",
-  },
+  headline: <>Engineering creativity through code and design</>,
+  // featured: {
+  //   display: true,
+  //   title: "Check out my new project: Magic Portfolio!",
+  //   href: "/work/magic-portfolio",
+  // },
   subline: (
     <>
-    I'm Selene, a design engineer at <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
-</>
+      I'm Mohammed, a passionate <Text as="span" size="xl" weight="strong">Software Engineer</Text> building robust web apps and creative solutions. Let's connect and create something amazing!
+    </>
   ),
 };
 
+const allSkills = [
+ { name: "C++", icon: "cpp", url: "https://isocpp.org/" },
+ { name: "Python", icon: "python", url: "https://www.python.org/" },
+ { name: "Go", icon: "go", url: "https://go.dev/" },
+ { name: "HTML/CSS", icon: "htmlcss", url: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
+ { name: "JavaScript", icon: "javascript", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
+ { name: "Next.js", icon: "nextjs", url: "https://nextjs.org/" },
+ { name: "SQL", icon: "sql", url: "https://www.mysql.com/" },
+ { name: "Git", icon: "git", url: "https://git-scm.com/" },
+ { name: "Docker", icon: "docker", url: "https://www.docker.com/" },
+ { name: "React", icon: "react", url: "https://react.dev/" },
+ { name: "Node.js", icon: "nodejs", url: "https://nodejs.org/" },
+];
 const about: About = {
   path: "/about",
   label: "About",
@@ -102,9 +113,8 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+       I’m a software engineer who loves building scalable, reliable systems from the ground up. 
+       I enjoy designing robust architectures and turning complex problems into maintainable solutions.
       </>
     ),
   },
@@ -113,45 +123,41 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "E2M Solutions",
+        timeframe: "January 2026 - Present",
+        role: "AI Engineering Intern",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Designed and launched a multi-tenant SaaS AI chatbot platform used by 20+ client organizations, enabling
+            plug-and-play knowledge base ingestion (PDFs, docs, URLs).
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Built end-to-end ingestion and retrieval pipelines using embeddings and semantic search, reducing client
+            support workload by 40-60% and improving response accuracy across domains
           </>,
+          <>
+            Integrated APIs and workflow orchestration to automate business processes.
+          </>
         ],
         images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
         ],
       },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
-        images: [],
-      },
+      // {
+      //   company: "IIT Indore - Remote",
+      //   timeframe: "July 2025 - December 2025",
+      //   role: "SDE Intern",
+      //   achievements: [
+      //     <>
+      //       Developed a design system that unified the brand across multiple platforms, improving
+      //       design consistency by 40%.
+      //     </>,
+      //     <>
+      //       Led a cross-functional team to launch a new product line, contributing to a 15% increase
+      //       in overall company revenue.
+      //     </>,
+      //   ],
+      //   images: [],
+      // },
     ],
   },
   studies: {
@@ -159,12 +165,8 @@ const about: About = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Adani University",
+        description: <>B.Tech Information And Communication Technology.</>,
       },
     ],
   },
@@ -173,61 +175,10 @@ const about: About = {
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
-        tags: [
-          {
-            name: "Figma",
-            icon: "figma",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
-      {
-        title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
-        tags: [
-          {
-            name: "JavaScript",
-            icon: "javascript",
-          },
-          {
-            name: "Next.js",
-            icon: "nextjs",
-          },
-          {
-            name: "Supabase",
-            icon: "supabase",
-          },
-        ],
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
+        title : "",
+        tags: allSkills,
+      }
+      // Add more skills as needed, following the same structure
     ],
   },
 };
@@ -242,63 +193,38 @@ const blog: Blog = {
 };
 
 const work: Work = {
-  path: "/work",
-  label: "Work",
+  path: "/projects",
+  label: "Projects",
   title: `Projects – ${person.name}`,
   description: `Design and dev projects by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };
 
-const gallery: Gallery = {
-  path: "/gallery",
-  label: "Gallery",
-  title: `Photo gallery – ${person.name}`,
-  description: `A photo collection by ${person.name}`,
-  // Images by https://lorant.one
-  // These are placeholder images, replace with your own
-  images: [
+export const competitiveProgramming = {
+  display: true,
+  title: "Competitive Programming",
+  platforms: [
     {
-      src: "/images/gallery/horizontal-1.jpg",
-      alt: "image",
-      orientation: "horizontal",
+      name: "LeetCode",
+      url: "https://leetcode.com/THFC/",
+      icon: "leetcode",
     },
     {
-      src: "/images/gallery/vertical-4.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-3.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-1.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/vertical-2.jpg",
-      alt: "image",
-      orientation: "vertical",
-    },
-    {
-      src: "/images/gallery/horizontal-2.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/horizontal-4.jpg",
-      alt: "image",
-      orientation: "horizontal",
-    },
-    {
-      src: "/images/gallery/vertical-3.jpg",
-      alt: "image",
-      orientation: "vertical",
+      name: "Codeforces",
+      url: "https://codeforces.com/profile/Special_One",
+      icon: "codeforces",
     },
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+
+export const resume = {
+  display: true,
+  title: "Resume",
+  href: "/resume.pdf", // Place your resume PDF in the public folder or update this path
+};
+
+export { person, social, newsletter, home, about, blog, work };
+
+
