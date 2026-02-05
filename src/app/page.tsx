@@ -12,7 +12,6 @@ import {
   Line,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, routes } from "@/resources";
-// import { Mailchimp } from "@/components";
 import { Projects } from "@/components/projects/Projects";
 import { Posts } from "@/components/blog/Posts";
 import { competitiveProgramming } from "@/resources";
@@ -154,7 +153,6 @@ export default function Home() {
           </Row>
         </Column>
       )}
-      {/* <Mailchimp /> */}
     </Column>
   );
 }
