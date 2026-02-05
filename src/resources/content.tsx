@@ -43,7 +43,7 @@ const social: Social = [
   {
     name: "Twitter",
     icon: "twitter",
-    link: "https://twitter.com/MohammedRupawala",
+    link: "https://twitter.com/rmoh4mmed",
     essential: true,
   },
   {
