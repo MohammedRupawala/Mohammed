@@ -1,0 +1,274 @@
+---
+title: "How Redis Handles Millions of Connections on a Single Thread"
+description: "A deep dive into epoll and how I built a lightweight Redis-like server from scratch"
+publishedAt: "2026-02-06"
+tags: ["systems", "redis", "epoll", "golang", "networking"]
+---
+
+## Introduction
+
+Ever wondered how **Redis** can handle millions of concurrent clients while being **single-threaded**?
+Or how **Node.js** executes thousands of asynchronous tasks without blocking?
+
+When I started building a **lightweight Redis-like in-memory server**, this question kept bothering me.
+I assumed the internals would be extremely complex - threads, locks, schedulers, magic.
+
+Turns out, the core idea is **surprisingly simple** once you understand how operating systems handle I/O.
+
+This post walks through:
+- why naive servers do not scale
+- how blocking I/O kills concurrency
+- how Redis and Node.js solve this using OS primitives
+- how I implemented the same model using `epoll`
+
+---
+
+## The naive blocking server
+
+Most people (including me initially) write servers like this:
+
+```go
+for {
+	conn, err := listener.Accept()
+	if err != nil {
+		panic(err)
+	}
+
+	numClients++
+	log.Println("Client connected:", conn.RemoteAddr())
+
+	for {
+		cmd, err := readCommand(conn)
+		if err != nil {
+			numClients--
+			log.Println("Client disconnected:", conn.RemoteAddr())
+			break
+		}
+
+		writeCommand(conn, cmd)
+	}
+}
+```
+
+What's wrong with this approach?
+This server is blocking:
+
+- `Accept()` blocks waiting for a new client
+- `readCommand()` blocks waiting for client input
+
+If a client connects and sends no data, the server is stuck inside `readCommand()`.
+
+As a result:
+
+- new clients cannot be accepted
+- one slow client can block the entire server
+
+This model fundamentally cannot scale.
+
+---
+
+## Blocking is the real problem
+
+Redis and Node.js avoid this by never blocking on I/O.
+
+Instead of asking:
+
+"Can I read from this socket now?"
+
+They ask the OS:
+
+"Notify me when this socket becomes readable."
+
+This approach is called **I/O multiplexing**.
+
+---
+
+## OS-level I/O multiplexing
+
+Different operating systems provide different mechanisms:
+
+| OS | Mechanism |
+| --- | --- |
+| Linux | epoll |
+| macOS / BSD | kqueue |
+| Windows | IOCP |
+
+All of them allow:
+
+- a single thread
+- to manage thousands of sockets
+- efficiently and without blocking
+
+Since Redis is heavily optimized for Linux, I chose `epoll`.
+
+---
+
+## What is epoll?
+
+Conceptually:
+
+- epoll is a kernel-managed event notification system
+- you register file descriptors (sockets)
+- the kernel tracks their readiness
+- your thread sleeps until something becomes ready
+
+No polling.
+No busy waiting.
+No per-connection threads.
+
+---
+
+## Creating a non-blocking server socket
+
+```go
+var maxClients = 20000
+
+// Buffer that epoll will fill with ready events
+events := make([]syscall.EpollEvent, maxClients)
+
+// Create a non-blocking TCP socket
+serverFD, err := syscall.Socket(
+	syscall.AF_INET,
+	syscall.SOCK_STREAM|syscall.O_NONBLOCK,
+	0,
+)
+if err != nil {
+	return err
+}
+defer syscall.Close(serverFD)
+```
+
+### Why non-blocking?
+
+`epoll` works correctly only when sockets never block.
+All waiting is delegated to the kernel.
+
+---
+
+## Binding and listening
+
+```go
+ip4 := net.ParseIP(config.Host)
+
+err = syscall.Bind(serverFD, &syscall.SockaddrInet4{
+	Port: config.Port,
+	Addr: [4]byte{ip4[0], ip4[1], ip4[2], ip4[3]},
+})
+if err != nil {
+	return err
+}
+
+err = syscall.Listen(serverFD, maxClients)
+if err != nil {
+	return err
+}
+```
+
+At this stage:
+
+- the socket is bound to an address
+- the kernel maintains a backlog queue
+- no clients are accepted yet
+
+---
+
+## Creating the epoll instance
+
+```go
+epollFD, err := syscall.EpollCreate1(0)
+if err != nil {
+	return err
+}
+defer syscall.Close(epollFD)
+```
+
+This creates a kernel epoll object and returns a file descriptor representing it.
+
+Think of it as:
+
+"An engine that tracks readiness for many sockets."
+
+---
+
+## Registering the server socket with epoll
+
+```go
+serverEvent := syscall.EpollEvent{
+	Events: syscall.EPOLLIN,
+	Fd:     int32(serverFD),
+}
+
+err = syscall.EpollCtl(
+	epollFD,
+	syscall.EPOLL_CTL_ADD,
+	serverFD,
+	&serverEvent,
+)
+if err != nil {
+	return err
+}
+```
+
+For a listening socket, `EPOLLIN` means:
+
+"There is at least one client waiting to be accepted."
+
+---
+
+## The event loop (Redis-style architecture)
+
+```go
+for {
+	n, err := syscall.EpollWait(epollFD, events, -1)
+	if err != nil {
+		continue
+	}
+
+	for i := 0; i < n; i++ {
+		fd := int(events[i].Fd)
+
+		if fd == serverFD {
+			// Accept new client
+			clientFD, _, err := syscall.Accept(serverFD)
+			if err != nil {
+				continue
+			}
+
+			syscall.SetNonblock(clientFD, true)
+
+			clientEvent := syscall.EpollEvent{
+				Events: syscall.EPOLLIN,
+				Fd:     int32(clientFD),
+			}
+
+			syscall.EpollCtl(
+				epollFD,
+				syscall.EPOLL_CTL_ADD,
+				clientFD,
+				&clientEvent,
+			)
+		} else {
+			// Client socket is readable
+			comm := core.FDComm{Fd: fd}
+
+			cmd, err := readCommand(comm)
+			if err != nil {
+				syscall.Close(fd)
+				continue
+			}
+
+			writeCommand(comm, cmd)
+		}
+	}
+}
+```
+
+What's happening here?
+
+- the thread blocks only on `epoll_wait`
+- the kernel wakes it when:
+  - a new client arrives
+  - a client sends data
+- the server reacts only to ready sockets
+
+This is exactly how Redis handles connections internally.
