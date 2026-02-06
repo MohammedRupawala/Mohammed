@@ -40,11 +40,11 @@ export function Posts({
             <Post key={post.slug} post={post} thumbnail={thumbnail} direction={direction} />
           ))}
         </Grid>
-      ) : (
+      ) : allBlogs.length === 0 ? (
         <div style={{ textAlign: "center", margin: "32px 0", color: "#888" }}>
           Watch for upcoming blog posts!
         </div>
-      )}
+      ) : null}
     </>
   );
 }
