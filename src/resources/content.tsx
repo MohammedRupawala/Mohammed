@@ -1,10 +1,19 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type {
+  About,
+  Blog,
+  Gallery,
+  Home,
+  Newsletter,
+  Person,
+  Social,
+  Work,
+} from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
   firstName: "Mohammed",
   lastName: "Rupawala",
-  name: `Mohammed Rupawala`,
+  name: "Mohammed Rupawala",
   role: "Software Engineer",
   avatar: "/images/image.png",
   email: "mohammedrupawala.in@gmail.com",
@@ -127,17 +136,17 @@ const about: About = {
         timeframe: "January 2026 - Present",
         role: "AI Engineering Intern",
         achievements: [
-          <>
+          <span key="e2m-ai-chatbot-platform">
             Designed and launched a multi-tenant SaaS AI chatbot platform used by 20+ client organizations, enabling
             plug-and-play knowledge base ingestion (PDFs, docs, URLs).
-          </>,
-          <>
+          </span>,
+          <span key="e2m-ingestion-pipelines">
             Built end-to-end ingestion and retrieval pipelines using embeddings and semantic search, reducing client
             support workload by 40-60% and improving response accuracy across domains
-          </>,
-          <>
+          </span>,
+          <span key="e2m-automation">
             Integrated APIs and workflow orchestration to automate business processes.
-          </>
+          </span>,
         ],
         images: [
         ],
@@ -175,7 +184,12 @@ const about: About = {
     title: "Technical skills",
     skills: [
       {
-        title : "",
+        title: "Core stack",
+        description: (
+          <>
+            Languages, frameworks, and tools I use to build reliable products end to end.
+          </>
+        ),
         tags: allSkills,
       }
       // Add more skills as needed, following the same structure
@@ -222,7 +236,7 @@ export const competitiveProgramming = {
 export const resume = {
   display: true,
   title: "Resume",
-  href: "/resume.pdf", // Place your resume PDF in the public folder or update this path
+  href: "/MohammedRupawala.pdf",
 };
 
 export { person, social, newsletter, home, about, blog, work };
