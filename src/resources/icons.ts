@@ -30,7 +30,6 @@ import {
   SiCplusplus,
   SiPython,
   SiHtml5,
-  SiCss3,
   SiGo,
   SiMysql,
   SiGit,

@@ -18,7 +18,7 @@ export const Footer = () => {
         s={{
           direction: "column",
           horizontal: "center",
-          align: "center",
+          vertical: "center"          // align: "center",
         }}
       >
         {/* Removed attribution and name, only social/contact icons remain */}
