@@ -15,7 +15,7 @@ const person: Person = {
   lastName: "Rupawala",
   name: "Mohammed Rupawala",
   role: "Software Engineer",
-  avatar: "/images/image.png",
+  avatar: "/images/Mohammed.jpeg",
   email: "mohammedrupawala.in@gmail.com",
   location: "Asia/Kolkata", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: [], // optional: Leave the array empty if you don't want to display languages
@@ -67,12 +67,12 @@ const social: Social = [
     link:"/MohammedRupawala.pdf",
     essential:true,
   },
-  {
-    name:"resume1",
-    icon:"document",
-    link:"/Mohammedupawala.pdf",
-    essential:true,
-  },
+  // {
+  //   name:"resume1",
+  //   icon:"document",
+  //   link:"/Mohammedupawala.pdf",
+  //   essential:true,
+  // },
 ];
 
 const home: Home = {
@@ -245,11 +245,11 @@ export const resume = {
   href: "/MohammedRupawala.pdf",
 };
 
-export const resume1 = {
-  display: true,
-  title: "Resume",
-  href: "/MohammedRupawala.pdf",
-};
+// export const resume1 = {
+//   display: true,
+//   title: "Resume",
+//   href: "/MohammedRupawala.pdf",
+// };
 
 export { person, social, newsletter, home, about, blog, work };
 
