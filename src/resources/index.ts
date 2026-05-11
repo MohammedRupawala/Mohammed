@@ -8,6 +8,7 @@ export {
   work,
   competitiveProgramming,
   resume,
+  resume1,
 } from "./content";
 
 export {

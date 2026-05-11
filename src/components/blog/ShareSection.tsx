@@ -30,6 +30,15 @@ const socialPlatforms: Record<string, SocialPlatform> = {
     generateUrl: (title, url) => 
       `/MohammedRupawala.pdf`,
   },
+
+  resume1:{
+    name: "resume",
+    icon: "document",
+    label: "Resume",
+    generateUrl: (title, url) => 
+      `/MohammedRupawala.pdf`,
+  },
+
   linkedin: {
     name: "linkedin",
     icon: "linkedin",

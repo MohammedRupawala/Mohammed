@@ -66,7 +66,13 @@ const social: Social = [
     icon:"document",
     link:"/MohammedRupawala.pdf",
     essential:true,
-  }
+  },
+  {
+    name:"resume1",
+    icon:"document",
+    link:"/Mohammedupawala.pdf",
+    essential:true,
+  },
 ];
 
 const home: Home = {
@@ -234,6 +240,12 @@ export const competitiveProgramming = {
 
 
 export const resume = {
+  display: true,
+  title: "Resume",
+  href: "/MohammedRupawala.pdf",
+};
+
+export const resume1 = {
   display: true,
   title: "Resume",
   href: "/MohammedRupawala.pdf",

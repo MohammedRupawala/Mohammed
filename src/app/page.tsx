@@ -11,7 +11,7 @@ import {
   Meta,
   Line,
 } from "@once-ui-system/core";
-import { home, about, person, baseURL, routes, resume } from "@/resources";
+import { home, about, person, baseURL, routes, resume,resume1 } from "@/resources";
 import { Projects } from "@/components/projects/Projects";
 import { Posts } from "@/components/blog/Posts";
 import { competitiveProgramming } from "@/resources";
@@ -112,6 +112,22 @@ export default function Home() {
                   {resume.title}
                 </Button>
               )}
+
+              {resume1.display && (
+                <Button
+                  id="resume1"
+                  data-border="rounded"
+                  href={resume1.href}
+                  variant="secondary"
+                  size="m"
+                  weight="default"
+                  prefixIcon="document"
+                  target="_blank"
+                >
+                  {"MohammedRupawala"}
+                </Button>
+              )}
+
             </Row>
           </RevealFx>
         </Column>
